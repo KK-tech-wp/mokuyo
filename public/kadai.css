@@ -1,0 +1,21 @@
+@charset utf-8;
+@media(max-width:767px){
+  #css{width:auto;}
+}
+
+body{
+  background-color:#CCFFFF;
+}
+
+dt{
+  font-family:"ヒラギノ角ゴ ProN W3";
+  font-size:2em;
+}
+dd{
+  font-size:1em;
+}
+
+.nyuryoku{
+  margin-top:5px;
+  text-align:center;
+}
