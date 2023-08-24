@@ -12,3 +12,6 @@ RUN apk add --update --no-cache --virtual .build-dependencies $PHPIZE_DEPS \
 RUN apk add libpng-dev
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install pdo_mysql
+
+RUN install -o www-data -g www-data -d /var/www/upload/image/
+
