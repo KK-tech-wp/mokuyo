@@ -45,7 +45,10 @@ if (isset($_POST['body']) && !empty($_SESSION['login_user_id'])) {
   return;
 }
 ?>
-
+<div style="background-color:#c0c0c0; margin:0; padding:0; ">
+<div style="text-align:right;">
+  <a href="/login.php">退出</a>
+</div>
 <div>
   現在 <?= htmlspecialchars($user['name']) ?> (ID: <?= $user['id'] ?>) さんでログイン中
 </div>
@@ -65,6 +68,7 @@ if (isset($_POST['body']) && !empty($_SESSION['login_user_id'])) {
   <canvas id="imageCanvas" style="display: none;"></canvas><!-- 画像縮小に使うcanvas (非表示) -->
   <button type="submit">送信</button>
 </form>
+</div>
 <hr>
 
 <dl id="entryTemplate" style="display: none; margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #ccc;">
@@ -73,10 +77,10 @@ if (isset($_POST['body']) && !empty($_SESSION['login_user_id'])) {
   <dt>投稿者</dt>
   <dd>
     <a href="" data-role="entryUserAnchor">
-    <img data-role="entryUserIconImage"
-      style="height: 2em; width: 2em; border-radius: 50%; object-fit: cover;">
-     <span data-role="entryUserNameArea"></span>
-</a>
+      <img data-role="entryUserIconImage"
+        style="height: 2em; width: 2em; border-radius: 50%; object-fit: cover;">
+      <span data-role="entryUserNameArea"></span>
+    </a>
   </dd>
   <dt>日時</dt>
   <dd data-role="entryCreatedAtArea"></dd>
@@ -107,11 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
       // 番号(ID)を表示
       entryCopied.querySelector('[data-role="entryIdArea"]').innerText = entry.id.toString();
 
-      //iconを表示
-      if (entry.user_icon_filename !== undefined){
-        entryCopied.querySelector('[data-role="entryUserIconImage"]').src=entry.user_icon_filename;
-      }else{
-        entryCopied.querySelector('[data-role="entryUserIconImage"]').display='none';
+      // アイコン画像が存在する場合は表示 なければimg要素ごと非表示に
+      if (entry.user_icon_file_url !== undefined) {
+        entryCopied.querySelector('[data-role="entryUserIconImage"]').src = entry.user_icon_file_url;
+      } else {
+        entryCopied.querySelector('[data-role="entryUserIconImage"]').display = 'none';
       }
 
       // 名前を表示
